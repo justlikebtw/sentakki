@@ -12,6 +12,7 @@ namespace osu.Game.Rulesets.Sentakki.Objects
 {
     public abstract class SentakkiHitObject : HitObject
     {
+        public virtual bool IsExNote { get; set; } = false;
         public virtual bool IsBreak { get; set; } = false;
         public virtual bool HasTwin { get; set; } = false;
 
@@ -26,6 +27,6 @@ namespace osu.Game.Rulesets.Sentakki.Objects
             set => LaneBindable.Value = value;
         }
 
-        protected override HitWindows CreateHitWindows() => new SentakkiHitWindows();
+        protected override HitWindows CreateHitWindows() => (IsExNote && !IsBreak) ? new SentakkiExHitWindows() : new SentakkiHitWindows();
     }
 }
