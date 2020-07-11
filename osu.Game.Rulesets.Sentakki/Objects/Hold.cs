@@ -12,6 +12,18 @@ namespace osu.Game.Rulesets.Sentakki.Objects
     public class Hold : SentakkiHitObject, IHasDuration
     {
         private bool isBreak = false;
+        private bool isEx = false;
+
+        public override bool IsExNote
+        {
+            get => isEx;
+            set
+            {
+                isEx = value;
+                Head.IsExNote = value;
+                Tail.IsExNote = value;
+            }
+        }
         public override bool IsBreak
         {
             get => isBreak;
