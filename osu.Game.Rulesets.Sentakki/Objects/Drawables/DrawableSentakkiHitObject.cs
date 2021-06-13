@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Sentakki.Objects.Drawables
         protected override void OnApply()
         {
             base.OnApply();
-            AccentColour.BindTo(HitObject.ColourBindable);
+            AccentColour.BindTo(HitObject.DisplayColour);
         }
 
         protected void ApplyResult(HitResult result)
@@ -63,7 +63,7 @@ namespace osu.Game.Rulesets.Sentakki.Objects.Drawables
         protected override void OnFree()
         {
             base.OnFree();
-            AccentColour.UnbindFrom(HitObject.ColourBindable);
+            AccentColour.UnbindFrom(HitObject.DisplayColour);
         }
 
         protected override void Update()

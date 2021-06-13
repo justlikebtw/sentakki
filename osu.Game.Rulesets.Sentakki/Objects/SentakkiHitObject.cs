@@ -6,6 +6,7 @@ using osu.Framework.Extensions.Color4Extensions;
 using osu.Game.Audio;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects;
+using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.Sentakki.Judgements;
 using osu.Game.Rulesets.Sentakki.Scoring;
@@ -14,25 +15,26 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Sentakki.Objects
 {
-    public abstract class SentakkiHitObject : HitObject
+    public abstract class SentakkiHitObject : HitObject, IHasDisplayColour
     {
         public SentakkiHitObject()
         {
             // We initialize the note colour to the default value first for test scenes
             // The colours during gameplay will be set during beatmap post-process
-            ColourBindable.Value = DefaultNoteColour;
+            DisplayColour.Value = DefaultNoteColour;
         }
 
         public override Judgement CreateJudgement() => new SentakkiJudgement();
 
+
         [JsonIgnore]
-        public Bindable<Color4> ColourBindable = new Bindable<Color4>();
+        public Bindable<Color4> DisplayColour { get; } = new Bindable<Color4>();
 
         [JsonIgnore]
         public Color4 NoteColour
         {
-            get => ColourBindable.Value;
-            set => ColourBindable.Value = value;
+            get => DisplayColour.Value;
+            set => DisplayColour.Value = value;
         }
 
         [JsonIgnore]

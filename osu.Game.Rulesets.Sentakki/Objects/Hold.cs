@@ -42,7 +42,6 @@ namespace osu.Game.Rulesets.Sentakki.Objects
                 StartTime = StartTime,
                 Lane = Lane,
                 Samples = nodeSamples.Any() ? nodeSamples.First() : new List<HitSampleInfo>(),
-                ColourBindable = ColourBindable.GetBoundCopy(),
             });
         }
 
