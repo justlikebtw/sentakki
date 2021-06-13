@@ -21,20 +21,28 @@ namespace osu.Game.Rulesets.Sentakki.Objects
         {
             // We initialize the note colour to the default value first for test scenes
             // The colours during gameplay will be set during beatmap post-process
+            ColourBindable.Value = DefaultNoteColour;
+
+            // This will never change
             DisplayColour.Value = DefaultNoteColour;
         }
 
         public override Judgement CreateJudgement() => new SentakkiJudgement();
 
 
+        // This bindable is used to determine the colours of notes during gameplay, which could vary depending on external factors
+        [JsonIgnore]
+        public Bindable<Color4> ColourBindable { get; } = new Bindable<Color4>();
+
+        // This Bindable is used to determine the colours of HitObjects within the editor timeline, which should stay constant to better indicate object type
         [JsonIgnore]
         public Bindable<Color4> DisplayColour { get; } = new Bindable<Color4>();
 
         [JsonIgnore]
         public Color4 NoteColour
         {
-            get => DisplayColour.Value;
-            set => DisplayColour.Value = value;
+            get => ColourBindable.Value;
+            set => ColourBindable.Value = value;
         }
 
         [JsonIgnore]

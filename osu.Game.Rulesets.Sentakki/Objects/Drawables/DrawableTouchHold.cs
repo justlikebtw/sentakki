@@ -86,6 +86,8 @@ namespace osu.Game.Rulesets.Sentakki.Objects.Drawables
         [Resolved]
         private OsuColour colours { get; set; }
 
+        protected override void OnApply() { } // We don't need to bind accent colour
+
         protected override void OnFree()
         {
             base.OnFree();
